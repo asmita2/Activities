@@ -1,0 +1,4 @@
+services:
+  user_info_insert:
+    class: Drupal\qed_activity\Insertdata;
+    arguments: ['@database']

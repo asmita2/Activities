@@ -1,0 +1,14 @@
+qed_activity.form:
+  path: '/SimpleForm'
+  defaults:
+    _form: '\Drupal\qed_activity\Form\UserForm'
+    _title: 'User Registration'
+  requirements:
+    _permission: 'access contact'
+qed_activity_registrationForm.form:
+  path: '/dic_form'
+  defaults:
+    _form: '\Drupal\qed_activity\Form\Registrationform'
+    _title: 'Registration form'
+  requirements:
+    _permission: 'access contact'
