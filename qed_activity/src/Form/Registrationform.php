@@ -59,65 +59,65 @@ class Registrationform extends FormBase {
       '#default_value' => 0,
     ];
 
-$form['other_option'] = [
-  '#type' =>'textfield',
-  '#title' => 'Other ',
-  '#states' =>[
-    'visible' =>[
-      ':input[name ="qualification"]' => ['value' =>'other'],
-  ],
-],
-  '#default_value' => '',
-];
-
-$form['Country'] = [
-    '#type' => 'select',
-    '#title' => $this->t('Select your Country'),
-    '#options' => [
-      'India' => $this->t('India'),
-      'UK' => $this->t('UK'),
+    $form['other_option'] = [
+     '#type' =>'textfield',
+      '#title' => 'Other ',
+      '#states' =>[
+      'visible' =>[
+       ':input[name ="qualification"]' => ['value' =>'other'],
       ],
-      '#required' => TRUE,
-    //'#default_value' => pg_field_is_null(result, row, feild),
+    ],
+    '#default_value' => '',
     ];
 
-$form['India_States'] = [
-     '#type' => 'select',
-     '#title' => 'Select state',
-     '#options' => [
-       'Maharashtra' => $this->t('Maharashtra'),
-       'Jammu & kashmir' => $this->t('Jammu & kashmir'),
-       'Gujrat' => $this->t('Gujrat'),
-       'Rajasthan' => $this->t('Rajasthan'),
-       'Uttarpradesh' => $this->t('Uttarpradesh'),
-       'Jharkhand' => $this->t('Jharkhand'),
-       'karnataka' => $this->t('karnathaka'),
-       'Tamil Nadu' => $this->t('Tamil Nadu'),
-     ],
-     '#states' =>[
-      'visible' =>[
-      ':input[name ="Country"]' => ['value' =>'India'],
-      ],
-    ],
+    $form['Country'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Select your Country'),
+      '#options' => [
+        'India' => $this->t('India'),
+        'UK' => $this->t('UK'),
+        ],
+        '#required' => TRUE,
+        '#default_value' => pg_field_is_null(result, row, feild),
+      ];
 
-   ];
+    $form['India_States'] = [
+         '#type' => 'select',
+         '#title' => 'Select state',
+         '#options' => [
+           'Maharashtra' => $this->t('Maharashtra'),
+           'Jammu & kashmir' => $this->t('Jammu & kashmir'),
+           'Gujrat' => $this->t('Gujrat'),
+           'Rajasthan' => $this->t('Rajasthan'),
+           'Uttarpradesh' => $this->t('Uttarpradesh'),
+           'Jharkhand' => $this->t('Jharkhand'),
+           'karnataka' => $this->t('karnathaka'),
+           'Tamil Nadu' => $this->t('Tamil Nadu'),
+         ],
+         '#states' =>[
+          'visible' =>[
+          ':input[name ="Country"]' => ['value' =>'India'],
+          ],
+        ],
 
-$form['Uk_States'] = [
-     '#type' => 'select',
-     '#title' => 'Select state',
-     '#options' => [
-       'London' => $this->t('London'),
-       'Chelsea' => $this->t('Chelsea'),
-       'LiverPool' => $this->t('LiverPool'),
-       'southHam' => $this->t('southHam'),
-       'Tottenham' => $this->t('Tottenham'),
-     ],
-     '#states' =>[
-      'visible' =>[
-      ':input[name ="Country"]' => ['value' =>'UK'],
-      ],
-    ],
-  ];
+       ];
+
+    $form['Uk_States'] = [
+         '#type' => 'select',
+         '#title' => 'Select state',
+         '#options' => [
+           'London' => $this->t('London'),
+           'Chelsea' => $this->t('Chelsea'),
+           'LiverPool' => $this->t('LiverPool'),
+           'southHam' => $this->t('southHam'),
+           'Tottenham' => $this->t('Tottenham'),
+         ],
+         '#states' =>[
+          'visible' =>[
+          ':input[name ="Country"]' => ['value' =>'UK'],
+          ],
+        ],
+      ];
 
 
     $form['submit'] = array(
