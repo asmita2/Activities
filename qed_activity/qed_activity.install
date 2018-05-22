@@ -1,0 +1,33 @@
+<?php
+use Drupal\Core\Database\Database;
+
+function qed_activity_schema() {
+  $schema['d8_demo_info'] = array(
+    'description' => 'Stores User Information',
+    'fields' => array(
+      'uid' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => "Creator user's {users}.uid"
+      ),
+      'first_name' => array(
+        'type' => 'varchar',
+        'length' => 400,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'First Name .'
+      ),
+      'last_name' => array(
+        'type' => 'varchar',
+        'length' => 400,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Last Name .'
+      )
+    )
+  );
+
+  return $schema;
+}
+?>
