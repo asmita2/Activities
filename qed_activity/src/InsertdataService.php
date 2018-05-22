@@ -9,11 +9,14 @@ class InsertdataService {
     $this->connection = $connection;
   }
 
-  public function insertData($userid, $first_name,$last_name){
+  public function insertData($userid, $first_name,$last_name,$qualification ,$country,$state){
      $query = $this->connection->insert('d8_demo_info')->fields([
       'first_name' => $first_name,
       'last_name' => $last_name,
       'uid' => $userid,
+      'qualification' => $qualification,
+      'country' => $country,
+      'state' => $state,
      ])->execute();
   }
   public function get_User_Details(){
