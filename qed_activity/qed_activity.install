@@ -24,7 +24,28 @@ function qed_activity_schema() {
         'not null' => TRUE,
         'default' => '',
         'description' => 'Last Name .'
-      )
+      ),
+       'qualification' => array(
+        'type' => 'varchar',
+        'length' => 400,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'qualifications .'
+      ),
+        'country' => array(
+        'type' => 'varchar',
+        'length' => 400,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'country.'
+      ),
+      'state' => array(
+        'type' => 'varchar',
+        'length' => 400,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'state'
+      ),
     )
   );
 
