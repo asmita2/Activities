@@ -4,77 +4,65 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\qed_activity\InsertdataService;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Session\AccountProxy;
 
 /**
  *  Activity: Form API Extended: DIC & Database
  */
 class Registrationform extends FormBase {
- protected $insert_obj;
- //protected $current_user;
- //AccountProxy  $current_user
+  protected $insert_obj;
+
 
   public function getFormId() {
     return 'qed_activity_settings';
   }
 
-  public function __construct(InsertdataService $insert_obj) {
-   $this->insert_obj = $insert_obj;
-   //$this->current_user = $current_user;
- }
+  public function __construct(InsertdataService $insert_obj){
+    $this->insert_obj = $insert_obj;
+  }
 
-public static function create(ContainerInterface $container) {
-  return new static($container->get('qed_activity.user_info_insert'));
-}
+  public static function create(ContainerInterface $container) {
+    return new static($container->get('qed_activity.user_info_insert'));
+  }
 
-public function buildForm(array $form, FormStateInterface $form_state) {
+  public function buildForm(array $form, FormStateInterface $form_state) {
+    $user_feilds = $this->insert_obj->get_User_Details();
 
     $form['first_name'] = array(
       '#type' => 'textfield',
       '#title' => 'First Name',
       '#required' => TRUE,
-      '#attributes' => array('placeholder' => t('Enter first Name'),)
+      '#attributes' => array(
+        'placeholder' => t('Enter first Name')
+      ),
+      '#default_value' => !empty($user_feilds) ? $user_feilds['first_name'] : 0
     );
 
     $form['last_name'] = array(
       '#type' => 'textfield',
       '#title' => 'Last Name',
       '#required' => TRUE,
-      '#attributes' => array('placeholder' => t('Enter last Name'),)
+      '#attributes' => array(
+        'placeholder' => t('Enter last Name')
+      ),
+      '#default_value' => !empty($user_feilds) ? $user_feilds['last_name'] : 0
     );
-$last_record = $this->insert_obj->getMsg();
- dpm($last_record);
 
     $form['submit'] = array(
       '#type' => 'submit',
-      '#value' => t('Submit'),
+      '#value' => t('Submit')
     );
     return $form;
-}
+  }
 
-public function submitForm(array &$form, FormStateInterface $form_state) {
+  public function submitForm(array &$form, FormStateInterface $form_state) {
 
-     //$userid = $this->current_user->id();
-  $user = $this->currentUser();
-  $userid = $user->id();
+    $user   = $this->currentUser();
+    $userid = $user->id();
 
 
     $first_name = $form_state->getValue('first_name');
-     $last_name = $form_state->getValue('last_name');
-    $this->insert_obj->insertData($userid,$first_name ,$last_name);
+    $last_name  = $form_state->getValue('last_name');
+    $this->insert_obj->insertData($userid, $first_name, $last_name);
 
-  //$form_state->set
-   // \Drupal\Core\Cache\Cache::invalidateTags(array('todo_item'));
-
-}
-
-public function validateForm(array &$form, FormStateInterface $form_state) {
-  // if (strlen($form_state->getValue('name')) <= 5) {
-  //     $form_state->setErrorByName('name', $this->t('Name should have minimum 5 characters'));
-  //   }
-  //   else{
-  //     drupal_set_message("Sucessfully inserted");
-
-  //   }
   }
 }
