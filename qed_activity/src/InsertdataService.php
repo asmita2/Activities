@@ -10,28 +10,23 @@ class InsertdataService {
   }
 
   public function insertData($userid, $first_name,$last_name){
-    // $connection = \Drupal::database();
-     $query = $this->connection->insert('d8_demo')->fields([
+     $query = $this->connection->insert('d8_demo_info')->fields([
       'first_name' => $first_name,
       'last_name' => $last_name,
       'uid' => $userid,
      ])->execute();
   }
-  public function getMsg(){
-    // $connection = \Drupal::database();
-    // $query = $this->connection->select( * FROM Table ORDER BY ID DESC LIMIT 1)
-    $select = $this->connection->select('d8_demo','n')
+  public function get_User_Details(){
+     $connection = \Drupal::database();
+
+    $select = $this->connection->select('d8_demo_info','n')
+    ->fields('n',['first_name'])
+    ->fields('n',['last_name'])
     ->orderBy('id','DESC')
     ->range(0, 1);
 
-    $result = $select->execute();
-    dpm($result);
+    $result = $select->execute()->fetchAssoc();
     return $result ;
-   //  $uid = \Drupal::currentUser()->id();
-   //  $query = $this->connection->select('todoinfo', 'n')
-   //  ->fields('n',['textmessage'])
-   //  ->condition('uid', $uid, '=');
-   // $result = $query->execute();
-   // return $result->fetchAllKeyed(0, 0);
+
   }
 }
